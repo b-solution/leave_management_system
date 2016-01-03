@@ -15,7 +15,7 @@ class LmsLeaveTypesController < ApplicationController
 
   def create
     @leave_type = LmsLeaveType.new
-    @leave_type.safe_attributes = params[:lms_leave_type]
+    @leave_type.safe_attributes = lms_leave_type_params
     if @leave_type.save
     find_leave_types
     respond_to do |format|
@@ -38,7 +38,7 @@ class LmsLeaveTypesController < ApplicationController
   end
 
   def update
-    @leave_type.safe_attributes = params[:lms_leave_type]
+    @leave_type.safe_attributes = lms_leave_type_params
     if @leave_type.save
     find_leave_types
     respond_to do |format|
@@ -91,5 +91,9 @@ class LmsLeaveTypesController < ApplicationController
   
   def find_leave_type
     @leave_type = LmsLeaveType.find_by_id(params[:id])
+  end
+
+  def lms_leave_type_params
+    params.require(:lms_leave_type).permit( :name, :days, :period, :identifier)
   end
 end

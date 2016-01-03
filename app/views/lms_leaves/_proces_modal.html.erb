@@ -36,11 +36,11 @@
     <div id='ded_leave_error' style='color:red;'><%= @leave.lms_leave_status.errors.full_messages[0] %></div>
     <div id='deduction_form'>
       <% if @yearly_settings.carry_forward && available_leaves(@leave_history.tot_carry_forward, @leave_history.ded_carry_forward) > 0 %>
-        <label>Carry Forward</label> <%= select f.object_name, "ded_carry_forward", leaves_to_be_detected(@leave_history.tot_carry_forward, @leave_history.ded_carry_forward, @leave.no_of_days) %></br>
+        <label>Carry Forward</label> <%= select f.object_name, "ded_carry_forward", leaves_to_be_detected(@leave_history.tot_carry_forward, @leave_history.ded_carry_forward, @leave.no_of_days).to_a %></br>
       <% end %>
       <% @active_leave_types.each do |lt| %>
         <% if available_leaves(@leave_history.send("tot_#{lt.identifier}"), @leave_history.send("ded_#{lt.identifier}")) > 0 %>
-          <label><%= lt.name %></label> <%= select f.object_name, "ded_#{lt.identifier}", leaves_to_be_detected(@leave_history.send("tot_#{lt.identifier}"), @leave_history.send("ded_#{lt.identifier}"), @leave.no_of_days) %></br>
+          <label><%= lt.name %></label> <%= select f.object_name, "ded_#{lt.identifier}", leaves_to_be_detected(@leave_history.send("tot_#{lt.identifier}"), @leave_history.send("ded_#{lt.identifier}"), @leave.no_of_days).to_a %></br>
         <% end %>
       <% end %>
         <label>LOP</label> <%= select f.object_name, "lop", (0..@leave.no_of_days).step(0.5).to_a %> </br>

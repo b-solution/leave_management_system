@@ -11,7 +11,7 @@
   <% cancelled_tab = false %>
 <% end %>
   <div class="box_title">
-    <% if LeaveManagementSystem.allowed_to?(@employee, LeaveManagementSystem::ROLES[:dt]) || LeaveManagementSystem.allowed_to?(@employee, LeaveManagementSystem::ROLES[:ar])%>
+    <% if LeaveManagementSystem.allowed_to?(@employee, LeaveManagementSystem::ROLES[:ar])%>
       <span id="dashboard_menu_wrapper">
       <ul id="dashboard_menu">
         <li class="own <%= menu == 'Own' ? 'active' : 'inactive' %>"><div>Own</div><span></span></li>

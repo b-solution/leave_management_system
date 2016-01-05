@@ -80,7 +80,7 @@ module LeaveManagementSystem
           LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt])
         when 'pending', 'approved', 'rejected', 'cancelled'
           if params[:menu] == 'Others'
-             LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:ar]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt])
+             LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:ar]) #|| LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt])
           else
             LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:al])
           end

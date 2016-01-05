@@ -48,17 +48,17 @@ module LeaveManagementSystem
 	when 'lms_dashboards'
           LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:al]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:ar]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:rt])
 	when 'lms_settings', 'lms_leave_accounts'
-	  LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt])
+	  LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:rt])
 	when 'lms_public_holidays'
 	  if action_name == 'index'
 	    LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:al]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:ar]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:rt])
 	  else
-	    LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt])
+	    LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:rt])
 	  end
 	when 'lms_reports'
-	  LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt]) || LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:rt])
+	  LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:rt])
 	when 'lms_leave_types'
-	  LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:dt])
+	  LeaveManagementSystem.allowed_to?(user, LeaveManagementSystem::ROLES[:rt])
 	when 'lms_leaves'
 	  compare_action(user)
 	end

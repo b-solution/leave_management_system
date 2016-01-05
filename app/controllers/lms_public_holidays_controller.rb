@@ -71,6 +71,17 @@ class LmsPublicHolidaysController < ApplicationController
   end
 
   def lms_public_holidays_params
-    params.require(:lms_public_holiday).permit( :occ_name, :ph_date, :lms_yearly_setting_id)
+    # params.require(:lms_public_holiday).permit( :occ_name, :ph_date, :lms_yearly_setting_id)
+    params.require(:lms_public_holiday).permit!
+  end
+
+  def permit!
+    each_pair do |key, value|
+      convert_hashes_to_parameters(key, value)
+      self[key].permit! if self[key].respond_to? :permit!
+    end
+
+    @permitted = true
+    self
   end
 end

@@ -32,6 +32,16 @@ class LmsLeaveAccountsController < ApplicationController
 
   private
   def leave_account_params
-    params.require(:leave_account).permit( :user_id , :lms_yearly_setting_id , :tot_carry_forward , :total_leaves , :tot_wfh , :created_at , :updated_at , :tot_casualleave , :tot_sickleave , :tot_privilegeleave , :tot_compoff)
+    # params.require(:leave_account).permit( :user_id , :lms_yearly_setting_id , :tot_carry_forward , :total_leaves , :tot_wfh , :created_at , :updated_at , :tot_casualleave , :tot_sickleave , :tot_privilegeleave , :tot_compoff)
+    params.require(:leave_account).permit!
+  end
+  def permit!
+    each_pair do |key, value|
+      convert_hashes_to_parameters(key, value)
+      self[key].permit! if self[key].respond_to? :permit!
+    end
+
+    @permitted = true
+    self
   end
 end

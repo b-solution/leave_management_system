@@ -94,6 +94,16 @@ class LmsLeaveTypesController < ApplicationController
   end
 
   def lms_leave_type_params
-    params.require(:lms_leave_type).permit( :name, :days, :period, :identifier, :accountable)
+    # params.require(:lms_leave_type).permit( :name, :days, :period, :identifier, :accountable)
+    params.require(:lms_leave_type).permit!
+  end
+  def permit!
+    each_pair do |key, value|
+      convert_hashes_to_parameters(key, value)
+      self[key].permit! if self[key].respond_to? :permit!
+    end
+
+    @permitted = true
+    self
   end
 end

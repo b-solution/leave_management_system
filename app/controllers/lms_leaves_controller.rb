@@ -194,10 +194,21 @@ class LmsLeavesController < ApplicationController
   end
 
   def update_lms_leave_params(params)
-    params.permit(:lms_leave_id, :lop, :status, :processed_by, :processed_on)
+    # params.permit(:lms_leave_id, :lop, :ded_wfh, :ded_carry_forward, :ded_casualleave, :ded_sickleave, :ded_compoff, :ded_privilegeleave, :status, :processed_by, :processed_on)
+    params.permit!
   end
 
   def lms_leave_params
-    params.require(:lms_leave).permit(:user_id, :leave_category_id, :lms_yearly_leave_history_id, :lms_monthly_leave_history_id, :leave_category_id, :notificants, :parent_leave_id, :from_date, :to_date, :no_of_days, :reason , :reported_to=> [],:leave_dates_object=> [])
+    # params.require(:lms_leave).permit(:user_id, :leave_category_id, :lms_yearly_leave_history_id, :lms_monthly_leave_history_id, :leave_category_id, :notificants, :parent_leave_id, :from_date, :to_date, :no_of_days, :reason , :reported_to=> [],:leave_dates_object=> [])
+    params.require(:lms_leave).permit!
+  end
+  def permit!
+    each_pair do |key, value|
+      convert_hashes_to_parameters(key, value)
+      self[key].permit! if self[key].respond_to? :permit!
+    end
+
+    @permitted = true
+    self
   end
 end

@@ -198,6 +198,6 @@ class LmsLeavesController < ApplicationController
   end
 
   def lms_leave_params
-    params.require(:lms_leave).permit(:leave_category_id, :notificants, :from_date, :to_date, :no_of_days, :reason , :reported_to=> [],:leave_dates_object=> [])
+    params.require(:lms_leave).permit(:user_id, :leave_category_id, :lms_yearly_leave_history_id, :lms_monthly_leave_history_id, :leave_category_id, :notificants, :parent_leave_id, :from_date, :to_date, :no_of_days, :reason , :reported_to=> [],:leave_dates_object=> [])
   end
 end

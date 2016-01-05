@@ -32,6 +32,6 @@ class LmsLeaveAccountsController < ApplicationController
 
   private
   def leave_account_params
-    params.require(:leave_account).permit(:user_id,:lms_yearly_setting_id,:tot_carry_forward,:total_leaves,:tot_wfh)
+    params.require(:leave_account).permit( :user_id , :lms_yearly_setting_id , :tot_carry_forward , :total_leaves , :tot_wfh , :created_at , :updated_at , :tot_casualleave , :tot_sickleave , :tot_privilegeleave , :tot_compoff)
   end
 end

@@ -93,7 +93,7 @@ module LeaveManagementSystem
     
     def find_leave_types
       @leave_types = LmsLeaveType.all
-      @active_leave_types = @yearly_settings ? @yearly_settings.leave_types : []
+      @active_leave_types = @yearly_settings ? @yearly_settings.leave_types.uniq : []
     end
     
     def find_public_holidays

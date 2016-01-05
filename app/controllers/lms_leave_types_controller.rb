@@ -94,6 +94,6 @@ class LmsLeaveTypesController < ApplicationController
   end
 
   def lms_leave_type_params
-    params.require(:lms_leave_type).permit( :name, :days, :period, :identifier)
+    params.require(:lms_leave_type).permit( :name, :days, :period, :identifier, :accountable)
   end
 end

@@ -13,6 +13,12 @@ module LmsLeavesHelper
   
   def reporting_managers
     current_user = Employee.current
-    LeaveManagementSystem.active_employees_with_role(LeaveManagementSystem::ROLES[:ar]).select {|manager| manager != current_user}
+    current_year_leave_history = current_user.current_year_leave_history
+    if current_year_leave_history.reporter.to_i.zero?
+      LeaveManagementSystem.active_employees_with_role(LeaveManagementSystem::ROLES[:ar]).select {|manager| manager != current_user}
+    else
+      manager = User.find current_year_leave_history.reporter.to_i
+      LeaveManagementSystem.active_employees_with_role(LeaveManagementSystem::ROLES[:ar]).select {|ma| ma.id == manager.id}
+    end
   end
 end

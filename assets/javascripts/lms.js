@@ -212,7 +212,7 @@ function submit_form(aId){
 	$.ajax({
 		url: updateURL + aId,
 		type: 'put',
-		data : $("form[name=" + formName + "] input").serialize()+"&reported_to="+$("form[name=" + formName + "] select").val(),
+		data : $("form[name=" + formName + "] input").serialize(),
 		dataType: 'json',
 		success: function(response){
 			if(response.status == 200){
@@ -265,4 +265,3 @@ function clear_error(){
 	$("#" + formName + "-error").remove();
 }
 ////////////////////////////////////////// leave accounts management /////////////////////////////////////////////////
- 

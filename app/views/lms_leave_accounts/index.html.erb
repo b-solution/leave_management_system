@@ -40,7 +40,7 @@
 								<td class="data-field data-select" data-column="reporter" data-value="<%= reporter.nil? ? '-' : reporter.name %>" >
 									<%= reporter.nil? ? '-' : reporter.name %>
 								</td>
-								<td class="data-select" data-column="reporter" hidden>
+								<td class="data-select selects" data-column="reporter" hidden>
 									<%= select_tag :reporter, options_for_select(@reporting_managers.select{|r| r.id != la.user_id}.collect {|e| [e.name, e.id]}.unshift(['-- select a manager --', '']), la.reporter), {:name=> "reporter[]",:required => true} %>
 								</td>
 								<td class='form-buttons' style='text-align:center; width: 120px;'>
@@ -60,4 +60,11 @@
 <script>
 	var updateURL = "/lms_leave_accounts/";
 	var formName = "leave_account";
+$(document).ready(function(e){
+	$('.selects').children('select').on('change', function(e){
+		val = $(this).val();
+		$(this).parents('tr').find('.data-select').attr('data-value', val);
+		$(this).parents('tr').find('.data-select').find('input').val(val)
+	})
+})
 </script>

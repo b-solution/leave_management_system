@@ -20,7 +20,7 @@ class LmsLeaveAccountsController < ApplicationController
   def update
     yearly_leave_history = LmsYearlyLeaveHistory.find params[:id]
     status, data, error = 200, {}, []
-    selected_reporter = params[:reporter].detect{|r| r.to_i>0}.to_i
+    selected_reporter = params[:reported_to].to_i
     params[:leave_account].merge!(:reporter=> selected_reporter)
     unless yearly_leave_history.update_attributes leave_account_params
       status = 406

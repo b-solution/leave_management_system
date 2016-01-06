@@ -212,7 +212,7 @@ function submit_form(aId){
 	$.ajax({
 		url: updateURL + aId,
 		type: 'put',
-		data : $("form[name=" + formName + "]").serialize(),
+		data : $("form[name=" + formName + "] input").serialize()+"&reported_to="+$("form[name=" + formName + "] select").val(),
 		dataType: 'json',
 		success: function(response){
 			if(response.status == 200){
@@ -244,6 +244,7 @@ function clear_form(aId, button, record){
 		});
 	}
 	else{
+		$(field).parents('tr').children('.data-select').toggle();
 		$(fields).each(function(index, field){
 			$(field).html($(field).attr('data-value'));
 		});

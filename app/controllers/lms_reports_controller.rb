@@ -78,12 +78,12 @@ class LmsReportsController < ApplicationController
   def find_employees_leave_histories
     @employees = LeaveManagementSystem.employees_with_role LeaveManagementSystem::ROLES[:al]
     @leave_histories = []
-    r_period = case action_name
-	when :month
-	      LmsLeaveType::MONTH
-	else
-	     LmsLeaveType::YEAR
-	end
+    r_period = case action_name.to_sym
+                 when :month
+                   LmsLeaveType::MONTH
+                 else
+                   LmsLeaveType::YEAR
+               end
     @employees.each do|u|
       leave_history = u.leave_history(@active_leave_types.map(&:identifier), @year, @month, r_period)
       next unless leave_history

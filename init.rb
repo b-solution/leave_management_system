@@ -3,7 +3,7 @@ Redmine::Plugin.register :leave_management_system do
   name 'Leave Management System plugin'
   author 'Johnson'
   description 'Leave Management System plugin'
-  version '1.0.0'
+  version '1.1.0'
   url 'https://github.com/johnson-johnson/leave_management_system'
   author_url 'http://www.linkedin.com/in/johnsonjoney'
 

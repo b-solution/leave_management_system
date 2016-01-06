@@ -13,7 +13,8 @@
     <% end %>
   <% end %>
 </p>
-<p><label for='lms_leave_reported_to'><%= l(:field_reported_to) %><span class="required"> *</span></label><%= select_tag :lms_leave_reported_to, options_for_select(reporting_managers.collect {|e| [e.name, e.id]}.unshift(['-- select a manager --', '']), params[:lms_leave] && params[:lms_leave][:reported_to]), {:name => 'lms_leave[reported_to][]', :required => true} %></p>
+<p><label for='lms_leave_reported_to'><%= l(:field_reported_to) %><span class="required"> *</span></label>
+	<%= select_tag :lms_leave_reported_to, options_for_select(reporting_managers.collect {|e| [e.name, e.id]}.unshift(['-- select a manager --', '']), params[:lms_leave] && params[:lms_leave][:reported_to]), {:name => 'lms_leave[reported_to][]', :required => true} %></p>
 <p>
   <%= f.text_field :notificants, :size => 10, :title => "Enter your team group email address and/or individual email addresses here, if you want to notify them." %>
   <span class="lms_help" title="if you want to notify your team, enter your team group email address and/or individual email addresses seperated by comma (,)">&nbsp;</span>

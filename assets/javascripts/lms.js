@@ -202,6 +202,7 @@ function load_form(aId){
 	$(fields).each(function(index, field){
 		$(field).html("<input type=text name=" + formName + "[" + $(field).attr('data-column') + "]" +" value=" + $(field).text() + " >");
 	});
+	account.children('.data-select').toggle();
 	$(buttons).html("<input type=button name=Save value=Save onclick=submit_form(" + aId + ") >");
 	$(buttons).append("<input type=button name=Cancel value=Cancel onclick=clear_form(" + aId + ") >");
 	$(account).addClass('data-form');
@@ -232,7 +233,13 @@ function clear_form(aId, button, record){
 	clear_error();
 	if(button == 'save'){
 		$(fields).each(function(index, field){
-			$(field).attr('data-value', parseFloat(record[$(field).attr('data-column')]));
+			if($(field).attr('data-column') == "reporter")
+			{
+				$(field).attr('data-value', record[$(field).attr('data-column')]);
+				$(field).parents('tr').children('.data-select').toggle();
+			}
+			else
+			  $(field).attr('data-value', parseFloat(record[$(field).attr('data-column')]));
 			$(field).html($(field).attr('data-value'));
 		});
 	}

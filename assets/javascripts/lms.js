@@ -244,7 +244,7 @@ function clear_form(aId, button, record){
 		});
 	}
 	else{
-		$(field).parents('tr').children('.data-select').toggle();
+		account.children('.data-select').toggle();
 		$(fields).each(function(index, field){
 			$(field).html($(field).attr('data-value'));
 		});

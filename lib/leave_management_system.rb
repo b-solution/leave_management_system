@@ -7,6 +7,7 @@ Rails.configuration.to_prepare do
   require_dependency 'leave_management_system/patches/group_patch'
   require_dependency 'leave_management_system/patches/application_helper_patch'
   require_dependency 'leave_management_system/patches/groups_controller_patch'
+  require_dependency 'leave_management_system/patches/settings_controller_patch'
   require_dependency 'leave_management_system/hooks/views_layouts_hook'
 end
 

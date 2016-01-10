@@ -58,6 +58,9 @@ class LmsLeaveTypesController < ApplicationController
     end
     find_leave_types
     respond_to do |format|
+      format.html{
+        redirect_to lms_settings_path
+      }
       format.js
     end
   end
@@ -69,6 +72,9 @@ class LmsLeaveTypesController < ApplicationController
     end
     find_leave_types
     respond_to do |format|
+      format.html{
+        redirect_to lms_settings_path
+      }
       format.js
     end
   end
